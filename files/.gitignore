@@ -1,4 +1,9 @@
 .gitignore
 .idea/.gitignore
 .idea/git-learning.iml
+.idea/misc.xml
+.ideas/modules.xml
+.ideas/profile_settings.xml
+.idea/Project_Default.xml
+.idea/vcs.xml
 scratch.py
