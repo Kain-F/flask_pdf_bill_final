@@ -16,3 +16,6 @@ print(f'{flatmate2.name} pays {flatmate2.pays(bill, flatmate1)} €')
 
 pdf_report = utils.PdfReport(filename=f'{bill.period}.pdf')
 pdf_report.generate(flatmate1, flatmate2, bill)
+
+filesharer = utils.FileSharer(filepath=pdf_report.filename)
+print(filesharer.share())

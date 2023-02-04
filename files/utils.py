@@ -1,6 +1,7 @@
 import webbrowser
 import fpdf
 import os
+from filestack import Client
 
 class Bill():
 	"""
@@ -68,6 +69,20 @@ such as their names, their due amounts and the period of the bill
 		pdf.output(self.filename)
 		# we open the pdf via the webbrowser
 		webbrowser.open(self.filename)
+
+class FileSharer(PdfReport):
+	"""
+	We will generate a link in which the generated pdf is uploaded and will be displayed and share that link
+	"""
+	def __init__(self,filepath,api_key = 'A1mgj36RyQ92wCnnEbcU7z'):
+		self.api_key = api_key
+		self.filepath = filepath 
+
+	def share(self):
+		# we want to generate a link to an url where the file is located using file link
+		client = Client(self.api_key)
+		new_filelink = client.upload(filepath=self.filepath)
+		return  new_filelink.url
 
 
 
