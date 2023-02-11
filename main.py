@@ -13,15 +13,15 @@ app = Flask(__name__)
 
 class HomePage(MethodView):
     def get(self):
-        print('Hello world')
+        return 'Hello world'
 
 class BillFormPage(MethodView):
     def get(self):
-        print('this is the bill form page')
+        return 'this is the bill form page'
 
 class ResultsPage(MethodView):
     def get(self):
-        print('this is the result page')
+        return 'this is the result page'
 
 class BillForm(Form):
     pass
