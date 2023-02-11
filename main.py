@@ -7,7 +7,7 @@ amounts for the flatmates on the invoice
 
 from flask.views import MethodView
 from wtforms import Form,StringField,SubmitField
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 
 app = Flask(__name__)
 
@@ -22,8 +22,11 @@ class BillFormPage(MethodView):
                                billform = bill_form)
 
 class ResultsPage(MethodView):
-    def get(self):
-        return 'this is the result page'
+    def post(self):
+        # we will request (acces) the data that is inputted in the previous page (BillFormPage)
+        billform = BillForm(request.form)
+        amount = billform.amount.data
+        return amount
 
 class BillForm(Form):
     amount = StringField('Bill amount: ')
