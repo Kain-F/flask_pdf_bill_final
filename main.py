@@ -45,17 +45,17 @@ class ResultsPage(MethodView):
         flatmate2 = utils.Flatmate(name2,days_in_house2)
 
         return f'{flatmate1.name} pays {flatmate1.pays(the_bill,flatmate2)} €\n ' \
-               f'{flatmate2.name} pays {flatmate2.pays(the_bill,flatmate1)}'
+               f'{flatmate2.name} pays {flatmate2.pays(the_bill,flatmate1)} €'
 
 class BillForm(Form):
-    amount = StringField('Bill amount: ')
-    period = StringField('Period: ')
+    amount = StringField('Bill amount: ',default=100)
+    period = StringField('Period: ',default='01.23')
 
-    name1 = StringField('Name: ')
-    days_in_house1 = StringField('Days in house: ')
+    name1 = StringField('Name: ',default='John')
+    days_in_house1 = StringField('Days in house: ',default='25')
 
-    name2 = StringField('Name: ')
-    days_in_house2 = StringField('Days in house: ')
+    name2 = StringField('Name: ',default='Mary')
+    days_in_house2 = StringField('Days in house: ',default='15')
 
     button = SubmitField('Calculate')
 
