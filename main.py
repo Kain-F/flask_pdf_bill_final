@@ -6,7 +6,7 @@ amounts for the flatmates on the invoice
 """
 
 from flask.views import MethodView
-from wtforms import Form,StringField
+from wtforms import Form,StringField,SubmitField
 from flask import Flask,render_template
 
 app = Flask(__name__)
@@ -34,6 +34,8 @@ class BillForm(Form):
 
     name2 = StringField('Name: ')
     days_in_house2 = StringField('Days in house: ')
+
+    button = SubmitField('Calculate')
 
 app.add_url_rule('/',
                  view_func=HomePage.as_view('home_page'))
