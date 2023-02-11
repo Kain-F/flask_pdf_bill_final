@@ -41,6 +41,8 @@ app.add_url_rule('/',
                  view_func=HomePage.as_view('home_page'))
 app.add_url_rule('/bill_form',
                  view_func=BillFormPage.as_view('bill_form_page'))
+app.add_url_rule('/results',
+                 view_func=ResultsPage.as_view('results_page'))
 
 # we will now run the app (our flask instance) and create the webpages
 # by setting the debug to true our changes will happen dynamically
