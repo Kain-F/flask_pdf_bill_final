@@ -70,7 +70,7 @@ such as their names, their due amounts and the period of the bill
 		# we open the pdf via the webbrowser
 		webbrowser.open(self.filename)
 
-class FileSharer(PdfReport):
+class FileSharer():
 	"""
 	We will generate a link in which the generated pdf is uploaded and will be displayed and share that link
 	"""
