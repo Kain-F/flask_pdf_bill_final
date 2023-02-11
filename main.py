@@ -6,26 +6,40 @@ amounts for the flatmates on the invoice
 """
 
 from flask.views import MethodView
-from wtforms import Form
-from flask import Flask
+from wtforms import Form,StringField
+from flask import Flask,render_template
 
 app = Flask(__name__)
 
 class HomePage(MethodView):
     def get(self):
-        return 'Hello world'
+        return render_template('index.html')
 
 class BillFormPage(MethodView):
     def get(self):
-        return 'this is the bill form page'
+        bill_form = BillForm()
+        return render_template('bill_form_page.html',
+                               billform = bill_form)
 
 class ResultsPage(MethodView):
     def get(self):
         return 'this is the result page'
 
 class BillForm(Form):
-    pass
+    amount = StringField('Bill amount: ')
+    period = StringField('Period: ')
 
-app.add_url_rule('/',view_func=HomePage.as_view('home_page'))
-app.add_url_rule('/bill',view_func=BillFormPage.as_view('bill_form_page'))
-app.run()
+    name1 = StringField('Name: ')
+    days_in_house1 = StringField('Days in house: ')
+
+    name2 = StringField('Name: ')
+    days_in_house2 = StringField('Days in house: ')
+
+app.add_url_rule('/',
+                 view_func=HomePage.as_view('home_page'))
+app.add_url_rule('/bill_form',
+                 view_func=BillFormPage.as_view('bill_form_page'))
+
+# we will now run the app (our flask instance) and create the webpages
+# by setting the debug to true our changes will happen dynamically
+app.run(debug=True)
