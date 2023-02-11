@@ -8,6 +8,10 @@ amounts for the flatmates on the invoice
 from flask.views import MethodView
 from wtforms import Form,StringField,SubmitField
 from flask import Flask,render_template,request
+# to import from different directories on your pc you need to state
+# import from directory.file the desired object
+from files import utils
+
 
 app = Flask(__name__)
 
@@ -22,11 +26,26 @@ class BillFormPage(MethodView):
                                billform = bill_form)
 
 class ResultsPage(MethodView):
+    """
+    this
+    """
     def post(self):
         # we will request (acces) the data that is inputted in the previous page (BillFormPage)
         billform = BillForm(request.form)
-        amount = billform.amount.data
-        return amount
+        amount = float(billform.amount.data)
+        period = billform.period.data
+        # with this info we will instantiate a bill that needs to be divided
+        the_bill = utils.Bill(amount,period)
+        # now that we have the bill we create our flatmates
+        name1 = billform.name1.data
+        name2 = billform.name2.data
+        days_in_house1 = float(billform.days_in_house1.data)
+        days_in_house2 = float(billform.days_in_house2.data)
+        flatmate1 = utils.Flatmate(name1,days_in_house1)
+        flatmate2 = utils.Flatmate(name2,days_in_house2)
+
+        return f'{flatmate1.name} pays {flatmate1.pays(the_bill,flatmate2)} €\n ' \
+               f'{flatmate2.name} pays {flatmate2.pays(the_bill,flatmate1)}'
 
 class BillForm(Form):
     amount = StringField('Bill amount: ')
