@@ -44,8 +44,11 @@ class ResultsPage(MethodView):
         flatmate1 = utils.Flatmate(name1,days_in_house1)
         flatmate2 = utils.Flatmate(name2,days_in_house2)
 
-        return f'{flatmate1.name} pays {flatmate1.pays(the_bill,flatmate2)} €\n ' \
-               f'{flatmate2.name} pays {flatmate2.pays(the_bill,flatmate1)} €'
+        return render_template('results.html',
+                               name1 = flatmate1.name,
+                               name2 = flatmate2.name,
+                               amount1 = flatmate1.pays(the_bill,flatmate2),
+                               amount2 = flatmate2.pays(the_bill,flatmate1))
 
 class BillForm(Form):
     amount = StringField('Bill amount: ',default=100)
