@@ -2,6 +2,7 @@ import webbrowser
 import fpdf
 import os
 from filestack import Client
+from keys import api_key
 
 class Bill():
 	"""
@@ -74,7 +75,7 @@ class FileSharer():
 	"""
 	We will generate a link in which the generated pdf is uploaded and will be displayed and share that link
 	"""
-	def __init__(self,filepath,api_key = 'A1mgj36RyQ92wCnnEbcU7z'):
+	def __init__(self,filepath,api_key = api_key):
 		self.api_key = api_key
 		self.filepath = filepath 
 
